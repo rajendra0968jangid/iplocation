@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  let [ip, setIp] = useState({ });
+  let [ip, setIp] = useState({ places: [] });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,7 +16,20 @@ function App() {
 
   return (
     <>
-     
+      <div>
+        <h1>{ip.country}</h1>
+        <h1>{ip["country abbreviation"]}</h1>
+        <h1>{ip["post code"]}</h1>
+        {ip["places"].map((item, index) => (
+          <div>
+            <p>{item.latitude}</p>
+            <p>{item.longitude}</p>
+            <p>{item["place name"]}</p>
+            <p>{item.state}</p>
+            <p>{item["state abbreviation"]}</p>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
